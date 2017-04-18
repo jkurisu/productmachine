@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <server description="PM Server">
 
-    <!-- Enable features -->
-    <featureManager>
-        <feature>webProfile-7.0</feature>
-    </featureManager>
+	<!-- Enable features -->
+	<featureManager>
+		<feature>webProfile-7.0</feature>
+	</featureManager>
 
-    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
-    <httpEndpoint id="defaultHttpEndpoint"
-                  httpPort="9080"
-                  httpsPort="9443" />
-                  
-    <!-- Automatically expand WAR files and EAR files -->
-    <applicationManager autoExpand="true"/>
+	<!-- To access this server from a remote client add a host attribute to	the following element, e.g. host="*" -->
+	<httpEndpoint id="defaultHttpEndpoint" httpPort="9080" httpsPort="9443" />
+
+	<classloading useJarUrls="true"/>
+
+	<!-- Disable Liberty's lazy app initialization because we do not want the user to wait 2min for pc to startup upon first request -->
+	<webContainer deferServletLoad="false" />
+
+	<!-- do not monitor dropins directory, we are deploying directly to 'apps' dir -->
+	<applicationMonitor dropinsEnabled="false" updateTrigger="disabled" />
+	<applicationManager autoExpand="true" startTimeout="120s" stopTimeout="30s" />
+
+	<application location="pm.war" context-root="pm"></application>
 
 </server>
