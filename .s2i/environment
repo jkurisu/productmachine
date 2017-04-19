@@ -1,2 +1,8 @@
 SERVER_NAME=pm
 LIBERTY_HOME=/opt/wlp
+SERVER_LOCATION=/opt/wlp/usr/servers
+SERVER_XML=server.xml
+SERVER_ENV=server.env
+JVM_OPTIONS=jvm.options
+APPLICATION_PROPERTIES=application.properties
+WAR_NAME=pm.war
