@@ -1,6 +1,6 @@
 SERVER_NAME=pm
 LIBERTY_HOME=/opt/wlp
-SERVER_LOCATION=/opt/s2i/destination
+SERVER_LOCATION=/opt/s2i/destination/src
 SERVER_XML=server.xml
 SERVER_ENV=server.env
 JVM_OPTIONS=jvm.options
