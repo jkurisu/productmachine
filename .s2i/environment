@@ -1,0 +1,2 @@
+SERVER_NAME=pm
+LIBERTY_HOME=/opt/wlp
