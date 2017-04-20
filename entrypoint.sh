@@ -3,6 +3,17 @@
 set -x;
 echo ${SERVER_NAME};
 
+export USER_ID=$(id -u)
+export GROUP_ID=$(id -g)
+
+echo ${APP_LOCATION}
+echo ${PASSWORD_TEMPLATE}
+
+envsubst < ${APP_LOCATION}/${PASSWORD_TEMPLATE} > /tmp/passwd
+export LD_PRELOAD=libnss_wrapper.so
+export NSS_WRAPPER_PASSWD=/tmp/passwd
+export NSS_WRAPPER_GROUP=/etc/group
+
 ${LIBERTY_HOME}/bin/server status ${SERVER_NAME}
 if [ "$?" -eq "2" ]; then
 
@@ -14,12 +25,5 @@ mv -f ${SERVER_LOCATION}/${JVM_OPTIONS}            ${LIBERTY_HOME}/usr/servers/$
 mv -f ${SERVER_LOCATION}/${WAR_NAME}               ${LIBERTY_HOME}/usr/servers/${SERVER_NAME}/apps/${WAR_NAME}
 
 fi
-
-export USER_ID=$(id -u)
-export GROUP_ID=$(id -g)
-envsubst < ${APP_LOCATION}/${PASSWORD_TEMPLATE} > /tmp/passwd
-export LD_PRELOAD=libnss_wrapper.so
-export NSS_WRAPPER_PASSWD=/tmp/passwd
-export NSS_WRAPPER_GROUP=/etc/group
 
 ${LIBERTY_HOME}/bin/server run ${SERVER_NAME}
