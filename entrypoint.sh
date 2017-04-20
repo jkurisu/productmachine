@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -x;
 echo ${SERVER_NAME};
@@ -11,14 +11,12 @@ echo ${PASSWORD_TEMPLATE}
 
 envsubst < ${APP_LOCATION}/${PASSWORD_TEMPLATE} > /tmp/passwd
 
-cat /tmp/passwd
-
-export LD_PRELOAD=libnss_wrapper.so
+export LD_PRELOAD=/usr/lib/libnss_wrapper.so
 export NSS_WRAPPER_PASSWD=/tmp/passwd
 export NSS_WRAPPER_GROUP=/etc/group
 
 ${LIBERTY_HOME}/bin/server status ${SERVER_NAME}
-if [ "$?" -eq "2" ]; then
+if [ "$?" -gt "1" ]; then
 
 ${LIBERTY_HOME}/bin/server create ${SERVER_NAME};
 mv -f ${SERVER_LOCATION}/${SERVER_XML}             ${LIBERTY_HOME}/usr/servers/${SERVER_NAME}/${SERVER_XML}

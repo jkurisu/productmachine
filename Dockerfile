@@ -22,7 +22,8 @@ ADD ${APPLICATION_PROPERTIES} ${SERVER_LOCATION}/${APPLICATION_PROPERTIES}
 ADD ${WAR_NAME}               ${SERVER_LOCATION}/${WAR_NAME}
 ADD ${PASSWORD_TEMPLATE}      ${APP_LOCATION}/${PASSWORD_TEMPLATE}
 
-USER root
+USER 0
+#USER root
 
 RUN chmod 755 ${APP_LOCATION}/${APP} && \
     chown -R liberty:liberty ${SERVER_LOCATION}/${SERVER_XML} && \
@@ -31,6 +32,7 @@ RUN chmod 755 ${APP_LOCATION}/${APP} && \
     chown -R liberty:liberty ${SERVER_LOCATION}/${JVM_OPTIONS} && \
     chown -R liberty:liberty ${SERVER_LOCATION}/${WAR_NAME}
     
-USER liberty
+USER 1000
+#USER liberty
 
 ENTRYPOINT ${APP_LOCATION}/${APP}
