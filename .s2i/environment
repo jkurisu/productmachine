@@ -6,3 +6,4 @@ SERVER_ENV=server.env
 JVM_OPTIONS=jvm.options
 APPLICATION_PROPERTIES=application.properties
 WAR_NAME=pm.war
+PASSWORD_TEMPLATE=passwd.template
