@@ -10,6 +10,9 @@ echo ${APP_LOCATION}
 echo ${PASSWORD_TEMPLATE}
 
 envsubst < ${APP_LOCATION}/${PASSWORD_TEMPLATE} > /tmp/passwd
+
+cat /tmp/passwd
+
 export LD_PRELOAD=libnss_wrapper.so
 export NSS_WRAPPER_PASSWD=/tmp/passwd
 export NSS_WRAPPER_GROUP=/etc/group
