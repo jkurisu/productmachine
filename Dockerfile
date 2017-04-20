@@ -11,7 +11,8 @@ ENV SERVER_NAME="defaultServer" \
     SERVER_LOCATION="/opt/wlp/usr/servers" \
     JVM_OPTIONS="jvm.options" \
     APPLICATION_PROPERTIES="application.properties" \
-    WAR_NAME="pm.war"
+    WAR_NAME="pm.war" \
+    PASSWORD_TEMPLATE="passwd.template"
     
 ADD ${APP} ${APP_LOCATION}/${APP} 
 ADD ${SERVER_XML}             ${SERVER_LOCATION}/${SERVER_XML}
@@ -19,6 +20,7 @@ ADD ${SERVER_ENV}             ${SERVER_LOCATION}/${SERVER_ENV}
 ADD ${JVM_OPTIONS}            ${SERVER_LOCATION}/${JVM_OPTIONS}
 ADD ${APPLICATION_PROPERTIES} ${SERVER_LOCATION}/${APPLICATION_PROPERTIES}
 ADD ${WAR_NAME}               ${SERVER_LOCATION}/${WAR_NAME}
+ADD ${PASSWORD_TEMPLATE}      ${APP_LOCATION}/${PASSWORD_TEMPLATE}
 
 USER root
 

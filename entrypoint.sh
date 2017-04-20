@@ -15,4 +15,11 @@ mv -f ${SERVER_LOCATION}/${WAR_NAME}               ${LIBERTY_HOME}/usr/servers/$
 
 fi
 
+export USER_ID=$(id -u)
+export GROUP_ID=$(id -g)
+envsubst < ${APP_LOCATION}/${PASSWORD_TEMPLATE} > /tmp/passwd
+export LD_PRELOAD=libnss_wrapper.so
+export NSS_WRAPPER_PASSWD=/tmp/passwd
+export NSS_WRAPPER_GROUP=/etc/group
+
 ${LIBERTY_HOME}/bin/server run ${SERVER_NAME}
