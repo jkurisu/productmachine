@@ -2,7 +2,7 @@ FROM jkurisu/liberty
 
 MAINTAINER Jon Kurisu "jakurisu@gmail.com"
 
-ENV SERVER_NAME="defaultServer" \
+ENV SERVER_NAME="pm" \
     LIBERTY_HOME="/opt/wlp"\
     APP="entrypoint.sh" \
     APP_LOCATION="" \
