@@ -26,5 +26,5 @@ mv -f ${SERVER_LOCATION}/${JVM_OPTIONS}            ${LIBERTY_HOME}/usr/servers/$
 mv -f ${SERVER_LOCATION}/${WAR_NAME}               ${LIBERTY_HOME}/usr/servers/${SERVER_NAME}/apps/${WAR_NAME}
 
 fi
-
+sleep 30s
 ${LIBERTY_HOME}/bin/server run ${SERVER_NAME}
